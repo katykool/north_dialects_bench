@@ -1,0 +1,5 @@
+# Private pseudonymization key
+data/pinega_dataset/.speaker_salt
+
+# Local downloaded/generated dataset and logs
+data/pinega_dataset/

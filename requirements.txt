@@ -1,0 +1,7 @@
+﻿requests
+beautifulsoup4
+urllib3
+huggingface_hub
+playwright
+nest_asyncio
+tqdm

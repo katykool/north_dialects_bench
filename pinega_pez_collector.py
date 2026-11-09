@@ -414,10 +414,6 @@ def main(argv=None):
     file_handler.setFormatter(logging.Formatter(log_format))
     logger.addHandler(file_handler)
 
-    console_handler = logging.StreamHandler(sys.stdout)
-    console_handler.setFormatter(logging.Formatter("[download] %(message)s"))
-    logger.addHandler(console_handler)
-    print(f"[log] WAV log: {out_root / 'download.log'}")
 
     recording_root = (
         out_root / args.recording_id
@@ -478,8 +474,6 @@ def main(argv=None):
     # --------------------------------------------------------
     # Process segments
     # --------------------------------------------------------
-
-    segment_started_at = time.monotonic()
 
     for index, segment in enumerate(
 
@@ -603,16 +597,6 @@ def main(argv=None):
             "source_page": args.url,
 
         })
-
-        elapsed = time.monotonic() - segment_started_at
-        percent = index / len(segments) * 100
-        average_seconds = elapsed / index
-        remaining_seconds = average_seconds * (len(segments) - index)
-        print(
-            f"[progress] WAV {index}/{len(segments)} ({percent:.1f}%) "
-            f"remaining~{remaining_seconds:.0f}s status={status}",
-            flush=True
-        )
 
         time.sleep(
             max(0.0, args.delay)
